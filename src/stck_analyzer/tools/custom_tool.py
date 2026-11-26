@@ -12,7 +12,7 @@ def get_stock_data(ticker: str) -> str:
 
     if current_price != 'N/A' and previous_close != 'N/A':
         pct_change = ((current_price - previous_close)/previous_close) * 100
-        price_info = f'Price {current_price:.2f} ({pct_change:+.2f})'
+        price_info = f'Price {current_price:.2f} ({pct_change:+.2f}% vs previous close {previous_close:.2f})'
     else:
         price_info = 'No price info available'
 
