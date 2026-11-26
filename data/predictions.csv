@@ -1,0 +1,2 @@
+ticker,asof,last_close,pred_close,pred_low,pred_high,sigma_1d_pct,method,run_date,target_date,actual_close,abs_error,naive_abs_error,in_interval
+NVDA,2026-11-25,149.3,149.3,134.88,165.26,7.92,ewma_vol_v1,2026-11-26,,,,,
