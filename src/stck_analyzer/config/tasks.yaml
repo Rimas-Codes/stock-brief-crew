@@ -44,8 +44,23 @@ brief_task:
     knowledge about the company or market. Cite news claims with their headline
     and publication date; include the link when available. If something is not
     in the data, say "not in the data" rather than guessing.
+    Include the forecast line from the forecast task under "What to watch".
     Structure: What changed today / Why it matters / What to watch.
   expected_output: >
     A 6-8 line daily brief formatted as markdown without code fences, with
     citations for news claims and no unsupported claims.
   agent: brief_writer
+
+forecast_task:
+  description: >
+    Today's date is {today}. A statistical model produced this one-day forecast for {ticker}:
+    {forecast}
+    Model track record so far: {track_record}
+    Write 3-4 lines: (1) the expected close and 80% range, copied exactly as given;
+    (2) whether the headlines or risks from earlier tasks suggest the real range could be
+    wider than the model's, citing the headline; (3) the track record, honestly, including
+    if it is not yet meaningful. Never create, adjust or round any price. Do not claim any
+    event will cause the price to move. End with: Not financial advice.
+  expected_output: >
+    3-4 lines of markdown with the forecast numbers copied exactly.
+  agent: forecaster

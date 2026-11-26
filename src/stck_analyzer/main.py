@@ -8,15 +8,33 @@ from stck_analyzer.crew import StockAnalyzerCrew
 from pathlib import Path
 from datetime import date
 
+from stck_analyzer.forecast import (forecast_next_close, log_prediction,                                    fill_actuals, track_record)
+
 warnings.filterwarnings("ignore", category=SyntaxWarning, module="pysbd")
 
 
 def run():
     ticker = sys.argv[1] if len(sys.argv) > 1 else 'NVDA'
     today = date.today().isoformat()
-    inputs = {'ticker': ticker, 'today': today}
 
+    fill_actuals(ticker)                      # score the previous forecast first
+    fc = forecast_next_close(ticker)
+    inputs = {
+        'ticker': ticker,
+        'today': today,
+        'forecast': (f"Last close {fc['last_close']}; expected next close {fc['pred_close']}; "
+                     f"80% range {fc['pred_low']} to {fc['pred_high']}; "
+                     f"typical daily move {fc['sigma_1d_pct']}%."),
+        'track_record': track_record(ticker),
+    }
     result = StockAnalyzerCrew().crew().kickoff(inputs=inputs)
+    log_prediction(fc)
+
+    # ticker = sys.argv[1] if len(sys.argv) > 1 else 'NVDA'
+    # today = date.today().isoformat()
+    # inputs = {'ticker': ticker, 'today': today}
+    #
+    # result = StockAnalyzerCrew().crew().kickoff(inputs=inputs)
 
     out = Path('briefs')
     out.mkdir(exist_ok=True)

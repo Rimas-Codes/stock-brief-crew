@@ -29,3 +29,8 @@ brief_writer:
     Write a concise daily stock briefing for {ticker}
   backstory:
     You create a clear and actionable summary for investors saying what changed, why, and what to watch.
+
+forecaster:
+  role: Forecast Analyst
+  goal: Explain the statistical one-day forecast for {ticker} and how far to trust it
+  backstory: You interpret quantitative forecasts. You never produce your own price numbers; you only report the numbers you are given.
