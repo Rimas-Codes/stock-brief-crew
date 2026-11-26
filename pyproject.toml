@@ -1,0 +1,26 @@
+[project]
+name = "stck_analyzer"
+version = "0.1.0"
+description = "stck_analyzer using crewAI"
+authors = [{ name = "Your Name", email = "you@example.com" }]
+requires-python = ">=3.10,<3.14"
+dependencies = [
+    "crewai[tools,litellm]>=1.15.45,<2.0.0",
+    "yfinance>=1.8.0",
+]
+
+[project.scripts]
+stck_analyzer = "stck_analyzer.main:run"
+run_crew = "stck_analyzer.main:run"
+train = "stck_analyzer.main:train"
+replay = "stck_analyzer.main:replay"
+test = "stck_analyzer.main:test"
+run_with_trigger = "stck_analyzer.main:run_with_trigger"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.crewai]
+type = "crew"
+project_id = "42c14f66-749d-4bd7-a6e0-f25743cde217"
